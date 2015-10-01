@@ -1,12 +1,12 @@
+//10^n กิ 1 (mod 9)
 int addDigits(int num)
 {
-    int s, y;
-    s = num / 10;
-    while(s != 0)
-    {
-        y = num % 10;
-        num = y + s;
-        s = num / 10;
-    }
-    return num;
+    int res;
+
+    if(num == 0)
+        return 0;
+    res = num % 9;
+    if(res == 0)
+        return 9;
+    return res;
 }
