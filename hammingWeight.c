@@ -6,11 +6,11 @@ int hammingWeight(uint32_t n)
 {
     int hw = 0;
 
-    while(n != 0)
+    while(n)
     {
-        if((n % 2) != 0)
+        if(n & 0x01)
             hw++;
-        n = n / 2;
+        n >>= 1;
     }
     return hw;
 }
