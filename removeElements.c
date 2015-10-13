@@ -21,9 +21,7 @@ struct ListNode* removeElements(struct ListNode* head, int val) {
                 pre = NULL;
             }
             else
-            {
                 pre->next = cur->next;
-            }
         }
         else
             pre = cur;
