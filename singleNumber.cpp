@@ -6,8 +6,8 @@ public:
             m[i]++;
         }
         for(auto &w : m) {
-            if(m.second == 1)
-                return m.first;
+            if(w.second == 1)
+                return w.first;
         }
     }
 };
