@@ -4,9 +4,7 @@ int hIndex(int* citations, int citationsSize) {
     high = citationsSize - 1;
     while(low < high) {
         mid = low + (high - low) / 2;
-        if(citations[mid] == citationsSize - mid)
-            return citationsSize - mid;
-        if(citations[mid] > citationsSize - mid)
+        if(citations[mid] >= citationsSize - mid)
             high = mid;
         else
             low = mid + 1;
