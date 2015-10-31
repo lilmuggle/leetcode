@@ -1,29 +1,37 @@
 class Solution {
 public:
     vector<vector<int>> vec;
-    vector<int> v;
-    int t;
+    vector<int> vn;
+    int* flag;
 
-    void backtrack(vector<int>& c, int last, int sum) {
-        if(sum == t)
-            vec.push_back(v);
+    void backtrack(vector<int>& nums, int n) {
+        if(n == nums.size())
+            vec.push_back(vn);
         else {
-            for(int i = last + 1; i < c.size(); i++) {
-                if(sum + c[i] <= t) {
-                    if(i > -1 && c[i - 1] == c[i] && i > last + 1)
-                        continue;
-                    v.push_back(c[i]);
-                    backtrack(c, i, sum + c[i]);
-                    v.pop_back();
+            int i, tmp;
+            for(i = 0; i < nums.size() ; i += tmp) {
+                tmp = 1;
+                if(flag[i]) {
+                    for(int j=i;j<nums.size()-1&&nums[j]==nums[j + 1];j++)
+                        tmp++;
+                    vn.push_back(nums[i]);
+                    flag[i] = 0;
+                    backtrack(nums, n + 1);
+                    vn.pop_back();
+                    flag[i] = 1;
                 }
             }
         }
     }
 
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        sort(candidates.begin(), candidates.end());
-        t = target;
-        backtrack(candidates, -1, 0);
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        int *p = new int[nums.size()];
+        for(int i = 0; i < nums.size(); i++)
+            p[i] = 1;
+        flag = p;
+        sort(nums.begin(), nums.end());
+        backtrack(nums, 0);
+        delete []p;
         return vec;
     }
 };
