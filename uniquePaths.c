@@ -10,7 +10,6 @@ int uniquePaths(int m, int n) {
 }
 
 //DP
-
 class Solution {
     int uniquePaths(int m, int n) {
         vector<vector<int> > path(m, vector<int> (n, 1));
